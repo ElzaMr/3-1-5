@@ -24,12 +24,14 @@
         <td><h1>Name</h1></td>
         <td><h1>Surname</h1></td>
         <td><h1>Age</h1></td>
+        <td><h1>Pass</h1></td>
     </tr>
     <tr th:each="user:${listOfUsers}">
         <td th:text="${user.getId()}"></td>
         <td th:text="${user.getName()}"></td>
         <td th:text="${user.getSurname()}"></td>
         <td th:text="${user.getAge()}"></td>
+        <td th:text="${user.getPass()}"></td>
         <td><a th:href="@{/users/{id}/update(id=${user.getId()})}">update</a>
         <td><a th:href="@{/users/delete/{id}(id=${user.getId()})}">delete</a>
     </tr>

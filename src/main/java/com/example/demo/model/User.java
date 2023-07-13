@@ -1,7 +1,14 @@
 package com.example.demo.model;
 
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -18,8 +25,13 @@ public class User {
     @Column(name = "pass")
     private String pass;
 
-    public User() {
-    }
+@ManyToMany
+@Fetch(FetchMode.JOIN)
+@JoinTable(name = "users_roles",
+        joinColumns = @JoinColumn(name = "user_id"),
+        inverseJoinColumns = @JoinColumn(name = "role_id"))
+private Set<Role> roles;//сет с ролями
+
 
     public User(String name, String surname, int age, String pass) {
         this.name = name;
