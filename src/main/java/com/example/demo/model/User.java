@@ -15,18 +15,29 @@ public class User {
     private String surname;
     @Column(name = "age")
     private int age;
+    @Column(name = "pass")
+    private String pass;
 
     public User() {
     }
 
-    public User(String name, String surname, int age) {
+    public User(String name, String surname, int age, String pass) {
         this.name = name;
         this.surname = surname;
         this.age = age;
+        this.pass = pass;
     }
 
     public int getId() {
         return id;
+    }
+
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
     }
 
     public void setId(int id) {
