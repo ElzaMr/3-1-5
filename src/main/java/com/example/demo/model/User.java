@@ -11,11 +11,12 @@ import java.util.Collection;
 import java.util.Set;
 
 @Entity
-@Table(name = "users")
+@Table(name = "users", uniqueConstraints= @UniqueConstraint(columnNames={"id", "name"}))
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     @Column(name = "name")
     private String name;
     @Column(name = "surname")
@@ -38,6 +39,9 @@ private Set<Role> roles;//сет с ролями
         this.surname = surname;
         this.age = age;
         this.pass = pass;
+    }
+
+    public User() {
     }
 
     public int getId() {
