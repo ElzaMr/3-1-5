@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.xml.transform.sax.SAXResult;
 import java.util.List;
 
 @Controller
@@ -22,7 +23,7 @@ public class UsersController {
         return "users";
     }
 
-    @GetMapping(value = "/user/{id}")
+    @GetMapping(value = "/user/{id}")//вход на страничку юзера
     public String getUser(@PathVariable("id") int id, Model model) {
         User user = userService.getUserById(id);
         model.addAttribute("listOfUser", user);
@@ -35,27 +36,31 @@ public class UsersController {
         return "new";
     }
 
-    @PostMapping("/users")//я молодечик :)
+    @PostMapping(value = "/users")
     public String create(@ModelAttribute("user") User user, Model model) {
         userService.save(user);
         return "redirect:users";
     }
 ///////////////////////////////////////////////////////////////////////
-    @GetMapping("/{id}/update")
+    @GetMapping(value = "/{id}/update")
     public String update(Model model, @PathVariable("id") Integer id) {
         model.addAttribute("user", userService.getUserById(id));
         return "update";
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping(value = "/{id}")
     public String update1(@ModelAttribute("user") User user) {
         userService.update(user);
         return "redirect:/users";
     }
 
-    @GetMapping("/delete/{id}")
+    @GetMapping(value = "/delete/{id}")
     public String delete(@PathVariable("id") int id) {
         userService.delete(id);
         return "redirect:/users";
     }
+//    @GetMapping(value ="/user")//нужно найти юзера по id  и вывести его страничку
+//    public String userPage(User user,Model model) {
+//        return "/user";
+//    }
 }
