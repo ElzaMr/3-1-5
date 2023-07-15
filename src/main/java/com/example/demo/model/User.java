@@ -5,8 +5,11 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.Set;
 
@@ -18,12 +21,20 @@ public class User {
     private int id;
 
     @Column(name = "name")
+    @NotEmpty(message = "Name should not be empty")
+    @Size(min = 2,max = 20,message = "name 1")
     private String name;
+
     @Column(name = "surname")
+    @NotEmpty(message = "Surname should not be empty")
+    @Size(min = 2,max = 20)
     private String surname;
     @Column(name = "age")
+    @Range(min = 0,max = 150)
     private int age;
     @Column(name = "pass")
+    @NotEmpty(message = "Pass should not be empty")
+    @Size(min = 2,max = 20)
     private String pass;
 
 @ManyToMany
