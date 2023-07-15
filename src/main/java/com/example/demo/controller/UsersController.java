@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/users")
+//@RequestMapping("/users")
 public class UsersController {
     @Autowired
     private UserService userService;
 
-    @GetMapping()
+    @GetMapping(value = "/users")
     public String getAllUsers(Model model) {
         List<User> list = userService.getAllUsers();
         model.addAttribute("listOfUsers", list);
@@ -28,19 +28,19 @@ public class UsersController {
         model.addAttribute("listOfUser", user);
         return "user";
     }
-
-    @GetMapping(value = "/new")
+///////////////////////////////////////////////////////////////
+    @GetMapping(value = "/new")//создаем нового юзера
     public String newUser(User user, Model model) {
         model.addAttribute("user1", user);
         return "new";
     }
 
-    @PostMapping()
+    @PostMapping("/users")//я молодечик :)
     public String create(@ModelAttribute("user") User user, Model model) {
         userService.save(user);
-        return "redirect:/users";
+        return "redirect:users";
     }
-
+///////////////////////////////////////////////////////////////////////
     @GetMapping("/{id}/update")
     public String update(Model model, @PathVariable("id") Integer id) {
         model.addAttribute("user", userService.getUserById(id));

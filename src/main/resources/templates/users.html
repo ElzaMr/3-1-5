@@ -33,10 +33,10 @@
         <td align="center" th:text="${user.getSurname()}"></td>
         <td align="center" th:text="${user.getAge()}"></td>
         <td align="center" th:text="${user.getPass()}"></td>
-        <td align="center"><a th:href="@{/users/{id}/update(id=${user.getId()})}">update</a>
-        <td align="center"><a th:href="@{/users/delete/{id}(id=${user.getId()})}">delete</a>
+        <td align="center"><a th:href="@{/{id}/update(id=${user.getId()})}">update</a>
+        <td align="center"><a th:href="@{/delete/{id}(id=${user.getId()})}">delete</a>
     </tr>
 </table>
-<a href="users/new"><input type="button" value="Create new user"></a>
+<a href="/new"><input type="button" value="Create new user"></a>
 </body>
 </html>
