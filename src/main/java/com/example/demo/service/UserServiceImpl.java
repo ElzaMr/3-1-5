@@ -1,6 +1,7 @@
 package com.example.demo.service;
-import com.example.demo.Dao.UserDao;
 import com.example.demo.model.User;
+import com.example.demo.repo.UserRepo;
+import org.hibernate.Hibernate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -9,39 +10,41 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService{
 
-    private final UserDao userDao;
+    private final UserRepo userRepo;
 
-    public UserServiceImpl(UserDao userDao) {
-        this.userDao = userDao;
+    public UserServiceImpl( UserRepo userRepo) {
+        this.userRepo = userRepo;
     }
 
     @Override
     @Transactional
     public List<User> getAllUsers() {
-        return userDao.getAllUsers();
+        return userRepo.findAll();
     }
 
     @Override
     @Transactional
     public User getUserById(int id) {
-        return userDao.getUserById(id);
+        User user = userRepo.findById(id).orElse(null);
+//        Hibernate.initialize(user.getRoleSet());
+        return user;
     }
 
     @Override
     @Transactional
     public void save(User user) {
-        userDao.save(user);
+        userRepo.save(user);
     }
 
     @Override
     @Transactional
     public void update(User updatedUser) {
-    userDao.update(updatedUser);
+    userRepo.save(updatedUser);
     }
 
     @Override
     @Transactional
     public void delete(int id) {
-        userDao.delete(id);
+        userRepo.deleteById(id);
     }
 }

@@ -3,19 +3,17 @@ package com.example.demo.model;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-import java.util.Collection;
 import java.util.Set;
 
 @Entity
 @Table(name = "users", uniqueConstraints= @UniqueConstraint(columnNames={"id", "name"}))
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -23,7 +21,7 @@ public class User {
     @Column(name = "name")
     @NotEmpty(message = "Name should not be empty")
     @Size(min = 2,max = 20,message = "name 1")
-    private String name;
+    private String username;
 
     @Column(name = "surname")
     @NotEmpty(message = "Surname should not be empty")
@@ -45,8 +43,8 @@ public class User {
 private Set<Role> roles;//сет с ролями
 
 
-    public User(String name, String surname, int age, String pass) {
-        this.name = name;
+    public User(String username, String surname, int age, String pass) {
+        this.username = username;
         this.surname = surname;
         this.age = age;
         this.pass = pass;
@@ -71,8 +69,8 @@ private Set<Role> roles;//сет с ролями
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
     public int getAge() {
@@ -83,8 +81,8 @@ private Set<Role> roles;//сет с ролями
         this.age = age;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String name) {
+        this.username = name;
     }
 
     public String getSurname() {
@@ -99,7 +97,7 @@ private Set<Role> roles;//сет с ролями
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", name='" + username + '\'' +
                 ", surname='" + surname + '\'' +
                 ", age='" + age + '\'' +
                 '}';

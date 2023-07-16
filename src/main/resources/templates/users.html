@@ -21,7 +21,7 @@
 <table>
     <tr>
         <td align="center"><h1>ID</h1></td>
-        <td align="center"><h1>Name</h1></td>
+        <td align="center"><h1>Username</h1></td>
         <td align="center"><h1>Surname</h1></td>
         <td align="center"><h1>Age</h1></td>
         <td align="center"><h1>Pass</h1></td>
@@ -29,7 +29,7 @@
     </tr>
     <tr th:each="user:${listOfUsers}">
         <td align="center" th:text="${user.getId()}"></td>
-        <td align="center" th:text="${user.getName()}"></td>
+        <td align="center" th:text="${user.getUsername()}"></td>
         <td align="center" th:text="${user.getSurname()}"></td>
         <td align="center" th:text="${user.getAge()}"></td>
         <td align="center" th:text="${user.getPass()}"></td>
