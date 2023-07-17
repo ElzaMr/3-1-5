@@ -31,8 +31,8 @@ public class User {
     @Range(min = 0,max = 150)
     private int age;
     @Column(name = "pass")
-    @NotEmpty(message = "Pass should not be empty")
-    @Size(min = 2,max = 20)
+//    @NotEmpty(message = "Pass should not be empty")
+//    @Size(min = 2)
     private String pass;
 
 @ManyToMany
@@ -55,6 +55,10 @@ private Set<Role> roles;//сет с ролями
 
     public int getId() {
         return id;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
     }
 
     public String getPass() {
