@@ -11,14 +11,14 @@ import javax.validation.constraints.Size;
 import java.util.Set;
 
 @Entity
-@Table(name = "users", uniqueConstraints= @UniqueConstraint(columnNames={"id", "name"}))
+@Table(name = "users", uniqueConstraints= @UniqueConstraint(columnNames={ "username"}))
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "name")
+    @Column(name = "username")
     @NotEmpty(message = "Name should not be empty")
     @Size(min = 2,max = 20,message = "name 1")
     private String username;
