@@ -5,6 +5,7 @@ import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,8 @@ import java.util.List;
 public class AdminController {
     @Autowired
     private UserService userService;
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     @GetMapping(value = "/users")
     public String getAllUsers(Model model) {
@@ -38,7 +41,8 @@ public class AdminController {
     }
 
     @PostMapping(value = "/users")
-    public String create(@ModelAttribute("user") User user, Model model) {
+    public String create(@ModelAttribute("user") User user) {
+        user.setPass(passwordEncoder.encode(user.getPass()));
         userService.save(user);
         return "redirect:users";
     }
