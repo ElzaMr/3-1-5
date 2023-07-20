@@ -54,6 +54,7 @@ public class AdminController {
 
     @PatchMapping(value = "/{id}")
     public String update1(@ModelAttribute("user") User user) {
+        user.setPass(passwordEncoder.encode(user.getPass()));
         userService.update(user);
         return "redirect:/admin/users";
     }
