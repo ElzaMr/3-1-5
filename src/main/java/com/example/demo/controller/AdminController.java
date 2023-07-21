@@ -4,11 +4,11 @@ import com.example.demo.model.Role;
 import com.example.demo.model.User;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -25,7 +25,7 @@ public class AdminController {
     }
 
     @GetMapping(value = "/users")
-    public String getAllUsers(Model model) {
+    public String getAllUsers(Principal principal, Model model) {
         List<User> list = userService.getAllUsers();
         model.addAttribute("listOfUsers", list);
         return "users";
@@ -37,7 +37,8 @@ public class AdminController {
         model.addAttribute("listOfUser", user);
         return "user";
     }
-///////////////////////////////////////////////////////////////
+
+    ///////////////////////////////////////////////////////////////
     @GetMapping(value = "/new")//создаем нового юзера
     public String newUser(User user, Model model) {
         model.addAttribute("user1", user);
@@ -53,6 +54,7 @@ public class AdminController {
         userService.save(user);
         return "redirect:users";
     }
+
     @GetMapping(value = "/{id}/update")
     public String update(Model model, @PathVariable("id") Integer id) {
         model.addAttribute("user", userService.getUserById(id));

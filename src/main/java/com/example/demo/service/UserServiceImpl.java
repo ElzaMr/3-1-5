@@ -1,4 +1,5 @@
 package com.example.demo.service;
+
 import com.example.demo.model.Role;
 import com.example.demo.model.User;
 import com.example.demo.repo.UserRepo;
@@ -17,10 +18,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class UserServiceImpl implements UserService, UserDetailsService {
+public class UserServiceImpl implements UserService {
 
     private final UserRepo userRepo;
-    private  final PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
+
     @Autowired
     public UserServiceImpl(UserRepo userRepo, PasswordEncoder passwordEncoder) {
         this.userRepo = userRepo;
@@ -38,21 +40,21 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Transactional
     public User getUserById(int id) {
         User user = userRepo.findById(id).orElse(null);
-//        Hibernate.initialize(user.getRoleSet());
         return user;
     }
 
     @Override
     @Transactional
     public void save(User user) {
-//        user.setPass(passwordEncoder.encode(user.getPass()));
+        user.setPass(passwordEncoder.encode(user.getPass()));
         userRepo.save(user);
     }
 
     @Override
     @Transactional
     public void update(User updatedUser) {
-    userRepo.save(updatedUser);
+        updatedUser.setPass(passwordEncoder.encode(updatedUser.getPass()));
+        userRepo.save(updatedUser);
     }
 
     @Override
@@ -64,18 +66,5 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public User getUserByUsername(String username) {
         return userRepo.getUserByUsername(username);
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepo.getUserByUsername(username);
-        if(user == null){
-           throw new UsernameNotFoundException("User not found");
-        }
-        return new org.springframework.security.core.userdetails.User(user.getUsername(),user.getPass(),mapRolesToAuthorities(user.getRoles()));
-    }
-    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles){
-        return roles.stream().map(r -> new SimpleGrantedAuthority(r.getName())).collect(Collectors.toList());
-
     }
 }

@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.security.Principal;
 
 @Controller
-@RequestMapping("index/user")
 public class UserController {
     UserService userService;
     @Autowired
@@ -18,9 +17,10 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("")
+    @GetMapping("/user")
     public String getUser(Principal principal, Model model) {
         model.addAttribute("user", userService.getUserByUsername(principal.getName()));
+        System.out.println(userService.getUserByUsername(principal.getName()));
         return "userPage";
     }
 }
