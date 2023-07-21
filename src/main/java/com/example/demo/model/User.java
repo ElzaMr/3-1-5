@@ -97,6 +97,10 @@ private Set<Role> roles;//сет с ролями
         this.surname = surname;
     }
 
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
     @Override
     public String toString() {
         return "User{" +

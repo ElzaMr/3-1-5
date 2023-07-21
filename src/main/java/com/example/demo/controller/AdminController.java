@@ -1,10 +1,9 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.Role;
 import com.example.demo.model.User;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,10 +14,15 @@ import java.util.List;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
+
+    private final UserService userService;
+
+
     @Autowired
-    private UserService userService;
-    @Autowired
-    PasswordEncoder passwordEncoder;
+    public AdminController(UserService userService) {
+        this.userService = userService;
+
+    }
 
     @GetMapping(value = "/users")
     public String getAllUsers(Model model) {
@@ -42,7 +46,10 @@ public class AdminController {
 
     @PostMapping(value = "/users")
     public String create(@ModelAttribute("user") User user) {
-        user.setPass(passwordEncoder.encode(user.getPass()));
+        Role role = new Role();
+        role.setName("USER");
+//
+//        user.setRoles(new HashSet<Role>().add(role.setName("USER")));
         userService.save(user);
         return "redirect:users";
     }
@@ -54,7 +61,7 @@ public class AdminController {
 
     @PatchMapping(value = "/{id}")
     public String update1(@ModelAttribute("user") User user) {
-        user.setPass(passwordEncoder.encode(user.getPass()));
+
         userService.update(user);
         return "redirect:/admin/users";
     }
