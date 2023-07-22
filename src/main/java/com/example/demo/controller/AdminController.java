@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.Role;
 import com.example.demo.model.User;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,29 +27,25 @@ public class AdminController {
     public String getAllUsers(Principal principal, Model model) {
         List<User> list = userService.getAllUsers();
         model.addAttribute("listOfUsers", list);
-        return "users";
+        return "ADMIN/users";
     }
 
     @GetMapping(value = "/user/{id}")//вход на страничку юзера
     public String getUser(@PathVariable("id") int id, Model model) {
         User user = userService.getUserById(id);
         model.addAttribute("listOfUser", user);
-        return "user";
+        return "User/user";
     }
 
     ///////////////////////////////////////////////////////////////
     @GetMapping(value = "/new")//создаем нового юзера
     public String newUser(User user, Model model) {
         model.addAttribute("user1", user);
-        return "new";
+        return "ADMIN/new";
     }
 
     @PostMapping(value = "/users")
     public String create(@ModelAttribute("user") User user) {
-        Role role = new Role();
-        role.setName("USER");
-//
-//        user.setRoles(new HashSet<Role>().add(role.setName("USER")));
         userService.save(user);
         return "redirect:users";
     }
@@ -58,20 +53,20 @@ public class AdminController {
     @GetMapping(value = "/{id}/update")
     public String update(Model model, @PathVariable("id") Integer id) {
         model.addAttribute("user", userService.getUserById(id));
-        return "update";
+        return "ADMIN/update";
     }
 
     @PatchMapping(value = "/{id}")
     public String update1(@ModelAttribute("user") User user) {
 
         userService.update(user);
-        return "redirect:/admin/users";
+        return "redirect:users";
     }
 
 
     @GetMapping(value = "/delete/{id}")
     public String delete(@PathVariable("id") int id) {
         userService.delete(id);
-        return "redirect:/admin/users";
+        return "redirect:ADMIN/users";
     }
 }
