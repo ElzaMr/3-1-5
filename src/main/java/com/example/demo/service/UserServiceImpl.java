@@ -28,12 +28,12 @@ public class UserServiceImpl implements UserService {
     public UserServiceImpl(UserRepo userRepo, RoleRepo roleRepo, PasswordEncoder passwordEncoder) {
         this.userRepo = userRepo;
         this.roleRepo = roleRepo;
-//        this.passwordEncoder = passwordEncoder;
         this.passwordEncoder = passwordEncoder;
     }
+
     @PostConstruct
-    private void init(){
-        log.info("init UserService" );
+    private void init() {
+        log.info("init UserService");
     }
 
     @Override
@@ -59,6 +59,7 @@ public class UserServiceImpl implements UserService {
         user.setRoles(roleSet);
         userRepo.save(user);
     }
+
     @Override
     @Transactional
     public void saveInit(User user) {

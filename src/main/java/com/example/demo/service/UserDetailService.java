@@ -22,14 +22,14 @@ public class UserDetailService implements UserDetailsService {
     }
 
     @PostConstruct
-    public void init(){
+    public void init() {
         log.info("UserDetailsService init");
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepo.getUserByUsername(username);
-        if(user == null){
+        if (user == null) {
             throw new UsernameNotFoundException("User not found");
         }
         return user;

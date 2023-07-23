@@ -36,21 +36,17 @@ public class Init {
         Role adminRole = new Role("ADMIN");
         Set<Role> adminRoles = new HashSet<>();
         adminRoles.add(adminRole);
-
         roleService.saveRole(adminRole);
 
         Role userRole = new Role("USER");
         Set<Role> userRoles = new HashSet<>();
         userRoles.add(userRole);
-
         roleService.saveRole(userRole);
 
         User admin = new User("admin", "admin", 20, "123", adminRoles);
-
         userService.saveInit(admin);
 
         User user = new User("user", "user", 20, "123", userRoles);
-
         userService.saveInit(user);
         log.info("user and admin created");
     }

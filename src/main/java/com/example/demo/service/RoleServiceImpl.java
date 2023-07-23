@@ -13,22 +13,23 @@ import java.util.Optional;
 @Slf4j
 public class RoleServiceImpl implements RoleService {
     private final RoleRepo roleRepo;
+
     @PostConstruct
-    private void init(){
-        log.info("init RoleService" );
+    private void init() {
+        log.info("init RoleService");
     }
+
     @Autowired
     public RoleServiceImpl(RoleRepo roleRepo) {
         this.roleRepo = roleRepo;
     }
-
 
     @Override
     public void saveRole(Role role) {
         roleRepo.save(role);
     }
 
-public Optional<Role> findById(int id){
-    return roleRepo.findById(id);
-}
+    public Optional<Role> findById(int id) {
+        return roleRepo.findById(id);
+    }
 }
