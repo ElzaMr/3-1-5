@@ -49,6 +49,17 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-log4j2</artifactId>
+			<version>3.1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>io.mateu</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.11.97</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>

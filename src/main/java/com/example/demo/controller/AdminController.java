@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;
 
@@ -39,13 +40,13 @@ public class AdminController {
 
     ///////////////////////////////////////////////////////////////
     @GetMapping(value = "/new")//создаем нового юзера
-    public String newUser(User user, Model model) {
+    public String newUser( User user, Model model) {
         model.addAttribute("user1", user);
         return "ADMIN/new";
     }
 
     @PostMapping(value = "/users")
-    public String create(@ModelAttribute("user") User user) {
+    public String create(@ModelAttribute("user")@Valid User user) {
         userService.save(user);
         return "redirect:/admin/users";
     }

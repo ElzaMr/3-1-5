@@ -1,11 +1,16 @@
 package com.example.demo.model;
 
-import net.bytebuddy.dynamic.loading.InjectionClassLoader;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 
 @Entity
+@Setter
+@Getter
+@NoArgsConstructor
 @Table(name = "roles")
 public class Role implements GrantedAuthority {
     @Id
@@ -13,26 +18,7 @@ public class Role implements GrantedAuthority {
     private int id;
     private String name;
 
-    public Role() {
-    }
-
     public Role(String name) {
-        this.name = name;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
         this.name = name;
     }
 

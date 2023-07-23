@@ -40,28 +40,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().logout().logoutUrl("/logout").permitAll();
     }
 
-
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//        http.authorizeHttpRequests((requests) -> requests.antMatchers("/admin/").hasAuthority("ADMIN").antMatchers("/user/").hasAnyAuthority("ADMIN", "USER").anyRequest().authenticated())
-//                .formLogin((form) -> form
-//                        .permitAll()
-//                        .successHandler(successUserHandler)
-//                )
-//                .logout((logout) -> logout
-//                        .logoutUrl("/logout")
-//                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET"))
-//                        .logoutSuccessUrl("/login")
-//                        .permitAll());
-//    }
-
-
-//@Override
-//protected void configure(HttpSecurity http) throws Exception {
-//
-//    http.authorizeRequests().antMatchers("/","/login").permitAll().and().antMatcher("/admin/**").antMatcher("ADMIN").antMatcher("/user").authorizeRequests();
-//}
-
     @Bean
     public PasswordEncoder encoder() {
         return new BCryptPasswordEncoder();

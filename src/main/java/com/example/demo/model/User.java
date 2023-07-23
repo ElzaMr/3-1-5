@@ -1,6 +1,9 @@
 package com.example.demo.model;
 
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.validator.constraints.Range;
@@ -14,6 +17,9 @@ import java.util.Collection;
 import java.util.Set;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
 @Table(name = "users", uniqueConstraints= @UniqueConstraint(columnNames={ "username"}))
 public class User implements UserDetails {
 
@@ -54,30 +60,6 @@ private Set<Role> roles;//сет с ролями
         this.roles = roles;
     }
 
-    public User() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public String getPass() {
-        return pass;
-    }
-
-    public void setPass(String pass) {
-        this.pass = pass;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles;
     }
@@ -111,37 +93,4 @@ private Set<Role> roles;//сет с ролями
         return true;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public void setUsername(String name) {
-        this.username = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + username + '\'' +
-                ", surname='" + surname + '\'' +
-                ", age='" + age + '\'' +
-                '}';
-    }
 }
