@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 
 import com.example.demo.model.User;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -12,4 +13,5 @@ public interface UserService {
     public void update(User updatedUser);
     public void delete(int id);
     public User getUserByUsername(String username);
+    public void saveInit(User user);
 }

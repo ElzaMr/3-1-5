@@ -2,13 +2,16 @@ package com.example.demo.configs;
 
 import com.example.demo.model.Role;
 import com.example.demo.model.User;
+import com.example.demo.repo.RoleRepo;
 import com.example.demo.service.RoleService;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @Component
@@ -20,25 +23,31 @@ public class Init {
     public Init(UserService userService, RoleService roleService) {
         this.userService = userService;
         this.roleService = roleService;
+
     }
 
     @PostConstruct
-    public void createUsers() {
-        Role userRole = new Role("USER");
-        Role adminRole = new Role("ADMIN");
+    public void initUsers() {
 
-        roleService.saveRole(userRole);
+        Role adminRole = new Role("ADMIN");
+        Set<Role> adminRoles = new HashSet<>();
+        adminRoles.add(adminRole);
+
         roleService.saveRole(adminRole);
 
-        Set<Role> adminRolesSet = new HashSet<>();
-        adminRolesSet.add(adminRole);
-        Set<Role> userRolesSet = new HashSet<>();
-        userRolesSet.add(userRole);
+        Role userRole = new Role("USER");
+        Set<Role> userRoles = new HashSet<>();
+        userRoles.add(userRole);
 
-        User user = new User("user", "user", 2, "123", userRolesSet);
-        User admin = new User("admin", "admin", 2, "123", adminRolesSet);
+        roleService.saveRole(userRole);
 
-        userService.save(user);
-        userService.save(admin);
+        User admin = new User("admin", "admin", 20, "123", adminRoles);
+
+        userService.saveInit(admin);
+
+        User user = new User("user", "user", 20, "123", userRoles);
+
+        userService.saveInit(user);
     }
 }
+

@@ -5,12 +5,15 @@ import com.example.demo.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.access.intercept.AuthorizationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
@@ -18,6 +21,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final SuccessUserHandler successUserHandler;
     private final UserDetailService userService;
+
     @Autowired
     public WebSecurityConfig(SuccessUserHandler successUserHandler, UserDetailService userService) {
         this.successUserHandler = successUserHandler;
@@ -27,31 +31,48 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .authorizeHttpRequests((requests) -> requests
-                        .antMatchers("/admin/").hasAuthority("ADMIN")
-                        .antMatchers("/user/").hasAnyAuthority("ADMIN", "USER")
-                        .anyRequest().authenticated()
-                )
-                .formLogin((form) -> form
-                        .permitAll()
-                        .successHandler(successUserHandler)
-                )
-                .logout((logout) -> logout
-                        .logoutUrl("/logout")
-                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET"))
-                        .logoutSuccessUrl("/login")
-                        .permitAll());
+                .authorizeHttpRequests()
+                .antMatchers("/","/index").permitAll()
+                .antMatchers("/admin/**").hasAnyAuthority("ADMIN")
+                .antMatchers("/user/**").hasAnyAuthority("ADMIN", "USER")
+                .anyRequest().authenticated()
+                .and().formLogin().permitAll().successHandler(successUserHandler)
+                .and().logout().logoutUrl("/logout").permitAll();
+    }
+
+
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        http.authorizeHttpRequests((requests) -> requests.antMatchers("/admin/").hasAuthority("ADMIN").antMatchers("/user/").hasAnyAuthority("ADMIN", "USER").anyRequest().authenticated())
+//                .formLogin((form) -> form
+//                        .permitAll()
+//                        .successHandler(successUserHandler)
+//                )
+//                .logout((logout) -> logout
+//                        .logoutUrl("/logout")
+//                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET"))
+//                        .logoutSuccessUrl("/login")
+//                        .permitAll());
+//    }
+
+
+//@Override
+//protected void configure(HttpSecurity http) throws Exception {
+//
+//    http.authorizeRequests().antMatchers("/","/login").permitAll().and().antMatcher("/admin/**").antMatcher("ADMIN").antMatcher("/user").authorizeRequests();
+//}
+
+    @Bean
+    public PasswordEncoder encoder() {
+        return new BCryptPasswordEncoder();
     }
 
     @Bean
-    public PasswordEncoder encoder(){
-       return new BCryptPasswordEncoder();
-    }
-    @Bean
-    public DaoAuthenticationProvider daoAuthenticationProvider(){
+    public DaoAuthenticationProvider daoAuthenticationProvider() {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
         authenticationProvider.setPasswordEncoder(encoder());
         authenticationProvider.setUserDetailsService(userService);
         return authenticationProvider;
     }
+
 }

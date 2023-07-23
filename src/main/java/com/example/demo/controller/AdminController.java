@@ -47,9 +47,9 @@ public class AdminController {
     @PostMapping(value = "/users")
     public String create(@ModelAttribute("user") User user) {
         userService.save(user);
-        return "redirect:users";
+        return "redirect:/admin/users";
     }
-
+////////////////////////////////////////////////////////////////////////////
     @GetMapping(value = "/{id}/update")
     public String update(Model model, @PathVariable("id") Integer id) {
         model.addAttribute("user", userService.getUserById(id));
@@ -67,6 +67,6 @@ public class AdminController {
     @GetMapping(value = "/delete/{id}")
     public String delete(@PathVariable("id") int id) {
         userService.delete(id);
-        return "redirect:ADMIN/users";
+        return "redirect:/admin/users";
     }
 }
