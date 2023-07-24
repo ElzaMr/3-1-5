@@ -15,6 +15,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -62,6 +63,9 @@ public class User implements UserDetails {
         this.pass = pass;
         this.roles = roles;
     }
+    public boolean isAdmin(){
+        return roles.contains(new Role("ADMIN"));
+    }
 
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles;
@@ -94,6 +98,17 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "User "
+                 + username +
+                ", with roles: " + roles.stream().toList().get(0).getName();
+    }
+
+    public String toStringRoles() {
+        return roles.stream().toList().get(0).getName();
     }
 
 }

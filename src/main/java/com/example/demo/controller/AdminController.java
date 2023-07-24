@@ -26,6 +26,7 @@ public class AdminController {
     public String getAllUsers(Principal principal, Model model) {
         List<User> list = userService.getAllUsers();
         model.addAttribute("listOfUsers", list);
+        model.addAttribute("user",userService.getUserByUsername(principal.getName()));
         return "ADMIN/users";
     }
 
