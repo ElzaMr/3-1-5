@@ -53,10 +53,10 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void save(User user) {
         user.setPass(passwordEncoder.encode(user.getPass()));
-        Optional<Role> role = roleRepo.findById(2);
-        Set<Role> roleSet = new HashSet<>();
-        roleSet.add(role.get());
-        user.setRoles(roleSet);
+//        Optional<Role> role = roleRepo.findById(2);
+//        Set<Role> roleSet = new HashSet<>();
+//        roleSet.add(role.get());
+//        user.setRoles(roleSet);
         userRepo.save(user);
     }
 
