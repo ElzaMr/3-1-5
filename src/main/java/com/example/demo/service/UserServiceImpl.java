@@ -70,9 +70,8 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void update(User updatedUser) {
-        updatedUser.setPass(passwordEncoder.encode(updatedUser.getPass()));
-        Optional<Role> role = roleRepo.findById(1);
-        Role role1 = role.get();
+//        Optional<Role> role = roleRepo.findById(1);
+//        Role role1 = role.get();
 
         userRepo.save(updatedUser);
     }
