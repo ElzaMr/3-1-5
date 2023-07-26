@@ -108,7 +108,9 @@ public class User implements UserDetails {
     }
 
     public String toStringRoles() {
-        return roles.stream().toList().get(0).getName();
+        StringBuilder x = new StringBuilder();
+         roles.stream().map(s->s.getName()).forEach(s -> x.append(s).append(" "));
+         return x.toString();
     }
 
 }
