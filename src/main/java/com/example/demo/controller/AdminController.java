@@ -37,6 +37,7 @@ public class AdminController {
         model.addAttribute("listOfRoles", listOfRoles);
         return "ADMIN/users";
     }
+
     @GetMapping()
     public String getAllUser(Principal principal, Model model) {
         model.addAttribute("admin", userService.getUserByUsername(principal.getName()));
@@ -44,7 +45,6 @@ public class AdminController {
         model.addAttribute("listOfRoles", listOfRoles);
         return "ADMIN/users";
     }
-
 
     @GetMapping(value = "/user/{id}")
     public String getUser(@PathVariable("id") int id, Model model) {
