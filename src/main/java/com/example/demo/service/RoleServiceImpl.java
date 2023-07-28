@@ -2,7 +2,6 @@ package com.example.demo.service;
 
 import com.example.demo.model.Role;
 import com.example.demo.repo.RoleRepo;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,14 +10,8 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@Slf4j
 public class RoleServiceImpl implements RoleService {
     private final RoleRepo roleRepo;
-
-    @PostConstruct
-    private void init() {
-        log.info("init RoleService");
-    }
 
     @Autowired
     public RoleServiceImpl(RoleRepo roleRepo) {

@@ -5,7 +5,6 @@ import com.example.demo.model.User;
 import com.example.demo.repo.RoleRepo;
 import com.example.demo.service.RoleService;
 import com.example.demo.service.UserService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.web.servlet.oauth2.login.OAuth2LoginSecurityMarker;
 import org.springframework.stereotype.Component;
@@ -18,7 +17,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @Component
-@Slf4j
+
 public class Init {
     private final UserService userService;
     private final RoleService roleService;
@@ -48,7 +47,6 @@ public class Init {
 
         User user = new User("user", "user", 20, "123", userRoles);
         userService.saveInit(user);
-        log.info("user and admin created");
     }
 }
 
