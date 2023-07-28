@@ -61,7 +61,7 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public boolean isAdmin(){
+    public boolean isAdmin() {
         return roles.contains(new Role("ADMIN"));
     }
 
@@ -101,14 +101,14 @@ public class User implements UserDetails {
     @Override
     public String toString() {
         return "User "
-                 + username +
+                + username +
                 ", with roles: " + roles.stream().toList().get(0).getName();
     }
 
     public String toStringRoles() {
         StringBuilder x = new StringBuilder();
-         roles.stream().map(s->s.getName()).forEach(s -> x.append(s).append(" "));
-         return x.toString();
+        roles.stream().map(Role::getName).forEach(s -> x.append(s).append(" "));
+        return x.toString();
     }
 
     public int getId() {

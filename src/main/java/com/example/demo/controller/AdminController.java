@@ -38,6 +38,12 @@ public class AdminController {
         return "ADMIN/users";
     }
 
+    @GetMapping(value = "/adminUser")
+    public String getAdminUser(Principal principal, Model model) {
+        model.addAttribute("user", userService.getUserByUsername(principal.getName()));
+        return "ADMIN/adminPage";
+    }
+
     @GetMapping()
     public String getAllUser(Principal principal, Model model) {
         model.addAttribute("admin", userService.getUserByUsername(principal.getName()));
@@ -54,7 +60,7 @@ public class AdminController {
     }
 
     @GetMapping(value = "/new")
-    public String newUser(User user, Model model,Principal principal) {
+    public String newUser(User user, Model model, Principal principal) {
         model.addAttribute("user1", user);
         model.addAttribute("admin", userService.getUserByUsername(principal.getName()));
         List<Role> listOfRoles = roleService.getAllRoles();
