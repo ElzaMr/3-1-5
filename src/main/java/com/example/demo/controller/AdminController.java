@@ -55,7 +55,7 @@ public class AdminController {
     public ResponseEntity<UserIncorrectInput> handleException(Exception exception){
         UserIncorrectInput incorrectInput = new UserIncorrectInput();
         incorrectInput.setInfo(exception.getMessage());
-        return new ResponseEntity<>(incorrectInput, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(incorrectInput, HttpStatus.BAD_REQUEST);
     }
 
 //    @GetMapping(value = "/adminUser")
