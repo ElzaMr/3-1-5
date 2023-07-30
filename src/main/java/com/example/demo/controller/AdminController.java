@@ -45,18 +45,7 @@ public class AdminController {
         return userService.getUserById(id);
     }
 
-    @ExceptionHandler
-    public ResponseEntity<UserIncorrectInput> handleException(UserNotFoundedException exception){
-        UserIncorrectInput incorrectInput = new UserIncorrectInput();
-        incorrectInput.setInfo(exception.getMessage());
-        return new ResponseEntity<>(incorrectInput, HttpStatus.NOT_FOUND);
-    }
-    @ExceptionHandler
-    public ResponseEntity<UserIncorrectInput> handleException(Exception exception){
-        UserIncorrectInput incorrectInput = new UserIncorrectInput();
-        incorrectInput.setInfo(exception.getMessage());
-        return new ResponseEntity<>(incorrectInput, HttpStatus.BAD_REQUEST);
-    }
+
 
 //    @GetMapping(value = "/adminUser")
 //    public String getAdminUser(Principal principal, Model model) {
