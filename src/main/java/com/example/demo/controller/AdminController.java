@@ -1,12 +1,11 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.User;
-import com.example.demo.service.RoleService;
-import com.example.demo.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.bind.annotation.GetMapping;
+import ru.kata.spring.boot_security.demo.model.User;
+import ru.kata.spring.boot_security.demo.service.RoleService;
+import ru.kata.spring.boot_security.demo.service.UserService;
 
 import java.security.Principal;
 
@@ -24,15 +23,20 @@ public class AdminController {
 
     @GetMapping ("/admin")
     public String showAllUsers(Model model, Principal principal) {
-        User principalUser = userService.getUserByUsername(principal.getName());
+        model.addAttribute("allUsers", userService.findAll());
+        User principalUser = userService.findByName(principal.getName());
         model.addAttribute("principalUser", principalUser);
+        model.addAttribute("newUser", new User ());
+        model.addAttribute("allRoles", roleService.getRoles());
+        model.addAttribute("titleTable1", "Список всех пользователей:");
         return "admin";
     }
 
     @GetMapping("/currentUser")
     public String showUser(Model model, Principal principal) {
-        User principalUser = userService.getUserByUsername(principal.getName());
+        User principalUser = userService.findByName(principal.getName());
         model.addAttribute("principalUser", principalUser);
         return "user";
     }
 }
+

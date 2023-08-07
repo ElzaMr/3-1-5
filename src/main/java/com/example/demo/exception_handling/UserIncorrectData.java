@@ -1,9 +1,10 @@
-package com.example.demo.exception;
+package com.example.demo.exception_handling;
 
-public class UserIncorrectInput {
+public class UserIncorrectData {
+
     private String info;
 
-    public UserIncorrectInput() {
+    public UserIncorrectData() {
     }
 
     public String getInfo() {

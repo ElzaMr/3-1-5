@@ -1,21 +1,21 @@
 package com.example.demo.service;
 
-
-import com.example.demo.model.User;
-import org.springframework.transaction.annotation.Transactional;
+import ru.kata.spring.boot_security.demo.model.User;
 
 import java.util.List;
 
 public interface UserService {
-    public List<User> getAllUsers();
+    List<User> findAll();
 
-    public User getUserById(long id);
+    User findOne(Long id);
 
-    public void save(User user);
+    User findByName(String username);
 
-    public void update(User updatedUser);
+    User getUser(Long id);
 
-    public void delete(long id);
+    void saveUser(User user);
 
-    public User getUserByUsername(String username);
+    void updateUser(User user);
+
+    void deleteUser(Long id);
 }
