@@ -28,7 +28,7 @@ public class RoleServiceImpl implements RoleService {
         return  roleRepo.findAll();
     }
 
-    public Optional<Role> findById(int id) {
+    public Optional<Role> findById(long id) {
         return roleRepo.findById(id);
     }
 }

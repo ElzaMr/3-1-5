@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserById(int id) {
+    public User getUserById(long id) {
         User user = userRepo.findById(id).orElse(null);
         return user;
     }
@@ -41,20 +41,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public void saveInit(User user) {
-        user.setPass(passwordEncoder.encode(user.getPass()));
-        userRepo.save(user);
-    }
-
-    @Override
-    @Transactional
     public void update(User updatedUser) {
         userRepo.save(updatedUser);
     }
 
     @Override
     @Transactional
-    public void delete(int id) {
+    public void delete(long id) {
         userRepo.deleteById(id);
     }
 

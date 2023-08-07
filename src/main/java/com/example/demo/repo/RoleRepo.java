@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
 @Repository
-public interface RoleRepo extends JpaRepository<Role, Integer> {
+public interface RoleRepo extends JpaRepository<Role, Long> {
 }
