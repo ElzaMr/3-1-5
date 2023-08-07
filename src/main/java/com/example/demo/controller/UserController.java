@@ -1,23 +1,26 @@
 package com.example.demo.controller;
+import com.example.demo.model.User;
 import com.example.demo.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import java.security.Principal;
 
-@Controller
+@RestController
 public class UserController {
-    UserService userService;
+    private final UserService userService;
 
-    @Autowired
+
     public UserController(UserService userService) {
         this.userService = userService;
     }
 
-    @GetMapping("/user")
-    public String getUser(Principal principal, Model model) {
-        model.addAttribute("user", userService.getUserByUsername(principal.getName()));
-        return "User/user";
+    @GetMapping ("/api/currentUser")
+    public ResponseEntity<User> showUser(Principal principal) {
+        User user = userService.getUserByUsername(principal.getName());
+
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 }
