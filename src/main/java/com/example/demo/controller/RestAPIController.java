@@ -21,7 +21,6 @@ public class RestAPIController {
 
     @GetMapping("/admin")
     public ResponseEntity<List<User>> showAllUsers() {
-
         return new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
     }
 

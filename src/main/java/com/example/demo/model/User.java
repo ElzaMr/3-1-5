@@ -6,7 +6,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.hibernate.validator.constraints.Range;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -30,7 +29,6 @@ public class User implements UserDetails {
     @Column(name = "age")
     @Range(min = 0, max = 150)
     private int age;
-
     @Column(name = "password")
     private String password;
     @ManyToMany
@@ -45,8 +43,6 @@ public class User implements UserDetails {
 
     public User(String userName, String surname, int age,
                 String password, Set<Role> role) {
-
-
         this.surname = surname;
         this.age = age;
         this.userName = userName;

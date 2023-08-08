@@ -5,7 +5,6 @@ import com.example.demo.service.UserService;
 import org.springframework.stereotype.Component;
 import com.example.demo.model.Role;
 import com.example.demo.model.User;
-
 import javax.annotation.PostConstruct;
 import java.util.HashSet;
 import java.util.Set;
