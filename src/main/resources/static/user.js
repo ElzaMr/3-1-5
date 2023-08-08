@@ -10,6 +10,7 @@ function getInformationAboutUser(user) {
 
     let result = '';
     result =
+
         `<tr>
     <td>${user.id}</td>
     <td>${user.userName}</td>
