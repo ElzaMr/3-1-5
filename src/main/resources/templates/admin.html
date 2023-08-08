@@ -18,10 +18,10 @@
 <!--  NAVBAR-->
 <nav class="navbar navbar-dark bg-dark">
     <div class="container-fluid">
-        <span class="navbar-brand mb-0 h1"
-<!--              th:text="${principalUser.getUserName()} + '  with role:  ' +-->
-<!--              ${#strings.listSubstringAfter(principalUser.role, '_')}">-->
-        </span>
+        <span class="text-white" style="font-size: 1.5em"
+              th:utext="ADMIN">
+                        USER
+                    </span>
         <a class="nav-link active" aria-current="page" th:href="@{/login}">Logout</a>
     </div>
 </nav>
@@ -359,14 +359,7 @@
                                 <th>Roles</th>
                             </tr>
                             </thead>
-                            <tbody>
-                            <tr>
-<!--                                <td th:text="${principalUser.id}"></td>-->
-<!--                                <td th:text="${principalUser.username}"></td>-->
-<!--                                <td th:text="${principalUser.surname}"></td>-->
-<!--                                <td th:text="${principalUser.age}"></td>-->
-<!--                                <td th:text="${#strings.listSubstringAfter(principalUser.role, '_')}"></td>-->
-                            </tr>
+                            <tbody id="userTableBody">
                             </tbody>
                         </table>
                     </div>
@@ -382,5 +375,6 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
 <script type="text/javascript" src="admin.js"></script>
+<script type="text/javascript" src="user.js"></script>
 </body>
 </html>
