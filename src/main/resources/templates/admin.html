@@ -195,6 +195,81 @@
                                     </div>
                                 </div>
                                 <!--Модальное окно EDIT КОНЕЦ-->
+                                <!--Модальное окно DELETE-->
+                                <div class="modal fade"
+                                     id="deleteModal" tabindex="-1">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Delete</h5>
+                                                <button type="button"
+                                                        class="btn-close"
+                                                        data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+
+                                            <div class="modal-body">
+                                                <form class="text-center" id="modalDelete">
+
+                                                    <div class="mb-3">
+                                                        <label for="deleteId"
+                                                               class="col-form-label d-flex justify-content-center"><b>ID</b>:</label>
+                                                        <input disabled type="text"
+                                                               class="form-control"
+                                                               id="deleteId"
+                                                               name="id">
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <label for="deleteUserName"
+                                                               class="col-form-label d-flex justify-content-center"><b>UserName</b>:</label>
+                                                        <input readonly type="email"
+                                                               class="form-control"
+                                                               id="deleteUserName"
+                                                               name="userName">
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <label for="deleteSurname"
+                                                               class="col-form-label d-flex justify-content-center"><b>Surname</b>:</label>
+                                                        <input readonly type="text"
+                                                               class="form-control"
+                                                               id="deleteSurname"
+                                                               name="surname">
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <label for="deleteAge"
+                                                               class="col-form-label d-flex justify-content-center"><b>Age</b>:</label>
+                                                        <input readonly type="number"
+                                                               class="form-control"
+                                                               id="deleteAge"
+                                                               name="salary">
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <label for="deleteRole"
+                                                               class="col-form-label d-flex justify-content-center"><b>Role</b>:</label>
+                                                        <input readonly type="text"
+                                                               class="form-control"
+                                                               id="deleteRole"
+                                                               name="role">
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary" id="deleteBtn"
+                                                        onclick="deleteUser();">Delete
+                                                </button>
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                                                        id="closeDelete"
+                                                >Close
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Модальное окно DELETE КОНЕЦ-->
 
                                 <!--Вкладка создания пользователя-->
                                 <div class="tab-pane fade" id="new_user" role="tabpanel"

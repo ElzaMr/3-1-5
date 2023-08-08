@@ -127,6 +127,40 @@ async function editUser() {
     closeModal()
     getAllUsers()
 }
+// Удаление пользователя
+function deleteModal(id) {
+    fetch(url + '/' + id, {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json;charset=UTF-8'
+        }
+    }).then(res => {
+        res.json().then(u => {
+            document.getElementById('deleteId').value = u.id;
+            document.getElementById('deleteUserName').value = u.userName;
+            document.getElementById('deleteSurname').value = u.surname;
+            document.getElementById('deleteAge').value = u.age;
+            document.getElementById("deleteRole").value = u.role.map(r => r.role.substring(5)).join(", ");
+        })
+    });
+}
+
+async function deleteUser() {
+    const id = document.getElementById("deleteId").value
+    console.log(id)
+    let urlDel = url + "/" + id;
+    let method = {
+        method: 'DELETE',
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }
+
+    fetch(urlDel, method).then(() => {
+        closeModal()
+        getAllUsers()
+    })
+}
 
 // Закрытие модального окна
 function closeModal() {
