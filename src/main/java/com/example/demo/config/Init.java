@@ -1,10 +1,10 @@
-package ru.kata.spring.boot_security.demo.config;
+package com.example.demo.config;
 
+import com.example.demo.service.RoleService;
+import com.example.demo.service.UserService;
 import org.springframework.stereotype.Component;
-import ru.kata.spring.boot_security.demo.model.Role;
-import ru.kata.spring.boot_security.demo.model.User;
-import ru.kata.spring.boot_security.demo.service.RoleService;
-import ru.kata.spring.boot_security.demo.service.UserService;
+import com.example.demo.model.Role;
+import com.example.demo.model.User;
 
 import javax.annotation.PostConstruct;
 import java.util.HashSet;

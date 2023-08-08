@@ -1,4 +1,4 @@
-package ru.kata.spring.boot_security.demo.model;
+package com.example.demo.model;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -35,6 +35,9 @@ public class User implements UserDetails {
     private String password;
     @ManyToMany
     @Fetch(FetchMode.JOIN)
+    @JoinTable(name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> role;
 
     public User() {

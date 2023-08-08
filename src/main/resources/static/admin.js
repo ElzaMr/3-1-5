@@ -71,6 +71,7 @@ document.getElementById('newUserForm').addEventListener('submit', (e) => {
             }
         })
 })
+
 //Редактирование пользователя
 function editModal(id) {
     fetch(url + '/' + id, {
@@ -127,6 +128,7 @@ async function editUser() {
     closeModal()
     getUserData()
 }
+
 // Удаление пользователя
 function deleteModal(id) {
     fetch(url + '/' + id, {

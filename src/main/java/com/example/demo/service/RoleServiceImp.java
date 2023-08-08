@@ -1,10 +1,10 @@
-package ru.kata.spring.boot_security.demo.service;
+package com.example.demo.service;
 
 
+import com.example.demo.repository.RoleRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.kata.spring.boot_security.demo.model.Role;
-import ru.kata.spring.boot_security.demo.repository.RoleRepository;
+import com.example.demo.model.Role;
 
 import java.util.List;
 
