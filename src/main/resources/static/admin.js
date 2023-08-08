@@ -38,5 +38,36 @@ function loadTable(listAllUsers) {
 }
 
 getAdminPage();
-
+// Добавление пользователя
+document.getElementById('newUserForm').addEventListener('submit', (e) => {
+    e.preventDefault()
+    let role = document.getElementById('role_select')
+    let rolesAddUser = []
+    let rolesAddUserValue = ''
+    for (let i = 0; i < role.options.length; i++) {
+        if (role.options[i].selected) {
+            rolesAddUser.push({id: role.options[i].value, name: 'ROLE_' + role.options[i].innerHTML})
+            rolesAddUserValue += role.options[i].innerHTML
+        }
+    }
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify({
+            userName: document.getElementById('newUserName').value,
+            surname: document.getElementById('newSurname').value,
+            age: document.getElementById('newAge').value,
+            password: document.getElementById('newPassword').value,
+            role: rolesAddUser
+        })
+    })
+        .then((response) => {
+            if (response.ok) {
+                getAllUsers()
+                document.getElementById("all-users-tab").click()
+            }
+        })
+})
 }
