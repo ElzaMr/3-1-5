@@ -1,4 +1,4 @@
-package com.example.demo.exception_handling;
+package ru.kata.spring.boot_security.demo.exception_handling;
 
 public class UserIncorrectData {
 

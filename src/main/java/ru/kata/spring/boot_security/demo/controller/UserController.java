@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package ru.kata.spring.boot_security.demo.controller;
 
 
 import org.springframework.http.HttpStatus;
