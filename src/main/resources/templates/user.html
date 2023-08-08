@@ -13,9 +13,9 @@
 <body>
 <nav class="navbar navbar-dark bg-dark">
     <div class="container-fluid">
-        <span class="navbar-brand mb-0 h1"
-              th:text="${principalUser.getUsername()} + '  with role:  ' +  ${#strings.listSubstringAfter(principalUser.role, '_')}">
-        </span>
+<!--        <span class="navbar-brand mb-0 h1"-->
+<!--              th:text="${principalUser.getUsername()} + '  with role:  ' +  ${#strings.listSubstringAfter(principalUser.role, '_')}">-->
+<!--        </span>-->
         <a class="nav-link active" aria-current="page" th:href="@{/login}">Logout</a>
     </div>
 </nav>

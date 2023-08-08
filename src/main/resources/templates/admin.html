@@ -19,8 +19,8 @@
 <nav class="navbar navbar-dark bg-dark">
     <div class="container-fluid">
         <span class="navbar-brand mb-0 h1"
-              th:text="${principalUser.getUserName()} + '  with role:  ' +
-              ${#strings.listSubstringAfter(principalUser.role, '_')}">
+<!--              th:text="${principalUser.getUserName()} + '  with role:  ' +-->
+<!--              ${#strings.listSubstringAfter(principalUser.role, '_')}">-->
         </span>
         <a class="nav-link active" aria-current="page" th:href="@{/login}">Logout</a>
     </div>
@@ -361,11 +361,11 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <td th:text="${principalUser.id}"></td>
-                                <td th:text="${principalUser.username}"></td>
-                                <td th:text="${principalUser.surname}"></td>
-                                <td th:text="${principalUser.age}"></td>
-                                <td th:text="${#strings.listSubstringAfter(principalUser.role, '_')}"></td>
+<!--                                <td th:text="${principalUser.id}"></td>-->
+<!--                                <td th:text="${principalUser.username}"></td>-->
+<!--                                <td th:text="${principalUser.surname}"></td>-->
+<!--                                <td th:text="${principalUser.age}"></td>-->
+<!--                                <td th:text="${#strings.listSubstringAfter(principalUser.role, '_')}"></td>-->
                             </tr>
                             </tbody>
                         </table>
