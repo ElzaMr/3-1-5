@@ -3,16 +3,15 @@ package com.example.demo.model;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name = "roles")
 public class Role implements GrantedAuthority {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true)
+    @Column(name = "id")
     private Long id;
-    @Column(name = "role")
+    @Column(name = "role", unique = true)
     private String role;
 
     public Role() {

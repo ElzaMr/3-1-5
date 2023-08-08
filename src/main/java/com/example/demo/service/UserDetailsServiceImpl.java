@@ -10,7 +10,7 @@ import com.example.demo.model.User;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
-    UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Autowired
     public UserDetailsServiceImpl(UserRepository userRepository) {
@@ -23,6 +23,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException("User not found");
         }
-        return user;
+        return new org.springframework.security.core.userdetails
+                .User(user.getUserName(), user.getPassword(), user.getAuthorities());
     }
 }

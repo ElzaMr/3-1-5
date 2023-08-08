@@ -6,42 +6,41 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.example.demo.model.User;
 import com.example.demo.service.UserService;
-
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
-public class RestAPIController {
+@RequestMapping("/api/admin")
+public class AdminRestController {
     private final UserService userService;
 
     @Autowired
-    public RestAPIController(UserService userService) {
+    public AdminRestController(UserService userService) {
         this.userService = userService;
     }
 
-    @GetMapping("/admin")
+    @GetMapping()
     public ResponseEntity<List<User>> showAllUsers() {
         return new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping("/admin/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable Long id) {
         return new ResponseEntity<>(userService.getUser(id), HttpStatus.OK);
     }
 
-    @PostMapping("/admin")
+    @PostMapping()
     public ResponseEntity<HttpStatus> addNewUser(@RequestBody User user) {
         userService.saveUser(user);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PutMapping("/admin/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<HttpStatus> updateUser(@RequestBody User user, @PathVariable Long id) {
         userService.updateUser(user);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @DeleteMapping("/admin/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
         return new ResponseEntity<>(HttpStatus.OK);

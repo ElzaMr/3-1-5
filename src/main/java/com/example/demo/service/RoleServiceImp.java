@@ -18,7 +18,6 @@ public class RoleServiceImp implements RoleService{
         this.roleRepository = roleRepository;
     }
 
-
     @Override
     public Role findRoleById(Long id) {
         return roleRepository.findById(id).get();

@@ -84,7 +84,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return role.stream().map(r -> new SimpleGrantedAuthority(r.getRole())).collect(Collectors.toList());
+        return role;
     }
 
     public String getPassword() {
