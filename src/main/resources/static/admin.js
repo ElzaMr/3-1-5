@@ -38,6 +38,7 @@ function loadTable(listAllUsers) {
 }
 
 getAdminPage();
+
 // Добавление пользователя
 document.getElementById('newUserForm').addEventListener('submit', (e) => {
     e.preventDefault()
@@ -70,28 +71,9 @@ document.getElementById('newUserForm').addEventListener('submit', (e) => {
             }
         })
 })
+
 // Закрытие модального окна
 function closeModal() {
     // document.getElementById("editClose").click()
     document.querySelectorAll(".btn-close").forEach((btn) => btn.click())
 }
-//Редактирование пользователя
-function editModal(id) {
-    fetch(url + '/' + id, {
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json;charset=UTF-8'
-        }
-    }).then(res => {
-        res.json().then(u => {
-
-            document.getElementById('editId').value = u.id;
-            document.getElementById('editUserName').value = u.username;
-            document.getElementById('editSurname').value = u.surname;
-            document.getElementById('editAge').value = u.age;
-            document.getElementById('editPassword').value = "****";
-
-        })
-    });
-}
-
