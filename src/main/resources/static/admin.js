@@ -1,7 +1,7 @@
 const url = 'http://localhost:8080/api/admin';
 
 
-function getAllUsers() {
+function getUserData() {
     fetch(url)
         .then(res => res.json())
         .then(data => {
@@ -9,7 +9,7 @@ function getAllUsers() {
         })
 }
 
-function getAdminPage() {
+function getAllUsers() {
     fetch(url).then(response => response.json()).then(user =>
         loadTable(user))
 }
@@ -37,7 +37,7 @@ function loadTable(listAllUsers) {
     document.getElementById('tableBodyAdmin').innerHTML = res;
 }
 
-getAdminPage();
+getAllUsers();
 
 // Добавление пользователя
 document.getElementById('newUserForm').addEventListener('submit', (e) => {
@@ -66,7 +66,7 @@ document.getElementById('newUserForm').addEventListener('submit', (e) => {
     })
         .then((response) => {
             if (response.ok) {
-                getAllUsers()
+                getUserData()
                 document.getElementById("all-users-tab").click()
             }
         })
@@ -125,7 +125,7 @@ async function editUser() {
         body: JSON.stringify(user)
     });
     closeModal()
-    getAllUsers()
+    getUserData()
 }
 // Удаление пользователя
 function deleteModal(id) {
@@ -158,7 +158,7 @@ async function deleteUser() {
 
     fetch(urlDel, method).then(() => {
         closeModal()
-        getAllUsers()
+        getUserData()
     })
 }
 
