@@ -71,6 +71,62 @@ document.getElementById('newUserForm').addEventListener('submit', (e) => {
             }
         })
 })
+//Редактирование пользователя
+function editModal(id) {
+    fetch(url + '/' + id, {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json;charset=UTF-8'
+        }
+    }).then(res => {
+        res.json().then(u => {
+
+            document.getElementById('editId').value = u.id;
+            document.getElementById('editUserName').value = u.username;
+            document.getElementById('editSurname').value = u.surname;
+            document.getElementById('editAge').value = u.age;
+            document.getElementById('editPassword').value = "****";
+
+        })
+    });
+}
+
+
+async function editUser() {
+    const form_ed = document.getElementById('modalEdit');
+
+    let idValue = document.getElementById("editId").value;
+    let userNameValue = document.getElementById("editUserName").value;
+    let surnameValue = document.getElementById("editSurname").value;
+    let ageValue = document.getElementById('editAge').value;
+    let passwordValue = document.getElementById("editPassword").value;
+    let listOfRole = [];
+    for (let i = 0; i < form_ed.role.options.length; i++) {
+        if (form_ed.role.options[i].selected) {
+            let tmp = {};
+            tmp["id"] = form_ed.role.options[i].value
+            listOfRole.push(tmp);
+        }
+    }
+    let user = {
+        id: idValue,
+        userName: userNameValue,
+        surname: surnameValue,
+        age: ageValue,
+        password: passwordValue,
+        role: listOfRole
+    }
+    await fetch(url + '/' + user.id, {
+        method: "PUT",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json;charset=UTF-8'
+        },
+        body: JSON.stringify(user)
+    });
+    closeModal()
+    getAllUsers()
+}
 
 // Закрытие модального окна
 function closeModal() {
