@@ -23,12 +23,8 @@ public class AdminController {
 
     @GetMapping ("/admin")
     public String showAllUsers(Model model, Principal principal) {
-        model.addAttribute("allUsers", userService.findAll());
         User principalUser = userService.findByName(principal.getName());
         model.addAttribute("principalUser", principalUser);
-        model.addAttribute("newUser", new User ());
-        model.addAttribute("allRoles", roleService.getRoles());
-        model.addAttribute("titleTable1", "Список всех пользователей:");
         return "admin";
     }
 
